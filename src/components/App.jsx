@@ -29,10 +29,10 @@ export function App() {
       number: e.target.number.value,
     };
 
-    const chackAddContact = contacts
+    const checkAddContact = contacts
       .map(cont => cont.name)
       .includes(e.target.name.value);
-    if (chackAddContact) {
+    if (checkAddContact) {
       alert(`${e.target.name.value} is already in contacts`);
     } else {
       setContacts(prevState => [...prevState, contact]);
@@ -49,10 +49,11 @@ export function App() {
     setContacts(deleteContacts);
   };
 
-  const normalizedFilter = filter.toLowerCase();
-  const visibleContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter)
-  );
+  const visibleContacts = () => {
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(({name}) =>
+        name.toLowerCase().includes(normalizedFilter));
+  };
   
   return (
     <div
@@ -72,7 +73,7 @@ export function App() {
       <FilterContacts filterContacts={filterContacts} />
       <ContactsList
         onDeleteHandler={onDeleteHandler}
-        contacts={visibleContacts}
+        contacts={visibleContacts()}
       />
     </div>
   );
