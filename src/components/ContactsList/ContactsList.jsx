@@ -1,5 +1,5 @@
 import { PhoneContacts } from './ContactsList.styled';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 export const ContactsList = ({ contacts, onDeleteHandler }) => {
   return (
@@ -21,8 +21,8 @@ export const ContactsList = ({ contacts, onDeleteHandler }) => {
     </PhoneContacts>
   );
 };
-ContactsList.propTypes = {
-  id: PropTypes.string,
-  contacts: PropTypes.array.isRequired,
-  onDeleteHandler: PropTypes.func.isRequired,
-};
+// ContactsList.propTypes = {
+//   id: PropTypes.string,
+//   contacts: PropTypes.array,
+//   onDeleteHandler: PropTypes.func.isRequired,
+// };
