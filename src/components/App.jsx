@@ -5,17 +5,10 @@ import { FilterContacts } from './FilterContacts';
 import { ContactsList } from './ContactsList';
 
 export function App() {
-  // const contactsArray = [
-  //   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-  //   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-  //   { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-  //   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  // ];
-
   const [contacts, setContacts] = useState(
-    () => JSON.parse(localStorage.getItem('contacts')) ?? ''
+    () => JSON.parse(localStorage.getItem('contacts')) ?? []
   );
-  const [filter, setFilter] = useState('');
+  const [filterCont, setFilterCont] = useState('');
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -40,8 +33,8 @@ export function App() {
   };
 
   const filterContacts = e => {
-    const { value } = e.target;
-    setFilter(value);
+    const { value } = e.currentTarget;
+    setFilterCont(value);
   };
 
   const onDeleteHandler = id => {
@@ -50,11 +43,12 @@ export function App() {
   };
 
   const visibleContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
-    return contacts.filter(({name}) =>
-        name.toLowerCase().includes(normalizedFilter));
+    const normalizedFilter = filterCont.toLowerCase();
+    return contacts.filter(({ name }) =>
+      name.toLowerCase().includes(normalizedFilter)
+    );
   };
-  
+
   return (
     <div
       style={{
